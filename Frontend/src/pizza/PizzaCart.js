@@ -3,7 +3,6 @@
  */
 var Storage = require("../Storage/StorageManager");
 var Templates = require('../Templates');
-
 //Перелік розмірів піци
 var PizzaSize = {
     Big: ["big_size", "велика"],
@@ -11,10 +10,7 @@ var PizzaSize = {
 };
 
 //Змінна в якій зберігаються перелік піц в кошику
-var Cart = Storage.get('cart');
-if (!Cart)
-    Cart = [];
-
+var Cart =[];
 
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
@@ -24,8 +20,9 @@ var $amount = $(".amount");
 function addToCart(pizza, size) {
     var alreadyInCart = -1;
     Cart.forEach(function (cart_item) {
-        if (cart_item.pizza === pizza && cart_item.size === size)
+        if (cart_item.pizza.id === pizza.id && cart_item.size[0] === size[0]) {
             alreadyInCart = Cart.indexOf(cart_item);
+    }
     });
     if (alreadyInCart !== -1) {
         Cart[alreadyInCart].quantity++;
@@ -46,10 +43,9 @@ function removeFromCart(cart_item) {
 }
 
 function initialiseCart() {
-    //Фукнція віпрацьвуватиме при завантаженні сторінки
-    //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
-    //TODO: ...
-
+    var repyashoque = Storage.get('cart');
+    if (repyashoque)
+        Cart = repyashoque;
     updateCart();
 }
 
@@ -72,13 +68,11 @@ function updateCart() {
 
     //Очищаємо старі піци в кошику
     $cart.html("");
-
+    var edit = $(".btn-order").text();
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
-        var html_code = Templates.PizzaCart_OneItem(cart_item);
-
+        var html_code = edit ?  Templates.PizzaCart_OneItem(cart_item) : Templates.PizzaCart_OneItem_Order(cart_item);
         var $node = $(html_code);
-
         $node.find(".btn-success").click(function () {
             cart_item.quantity += 1;
             updateCart();
@@ -104,6 +98,15 @@ function updateCart() {
     $total.text(getTotalPrice()+ " грн");
     $amount.text(Cart.length);
     Storage.set('cart', Cart);
+    var orderButton = $(".btn-order");
+    if(!Cart.length) {
+        orderButton.prop("disabled", true);
+        orderButton.removeAttr("onclick");
+    }
+    else {
+        orderButton.attr("onclick", "window.location.href='/order.html'");
+        orderButton.prop("disabled", false);
+    }
 }
 
 $(".btn-link").click(function () {

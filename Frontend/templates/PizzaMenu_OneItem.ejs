@@ -33,24 +33,24 @@ var column_class = (pizza.small_size && pizza.big_size) ? "col-sm-6" : "col-sm-1
             <div class="row">
                 <% if(pizza.small_size) { %>
                 <div class="small <%= column_class %>" >
-                    <div><img class="smallimage" src="../www/assets/images/weight.svg"><%= pizza.small_size.weight %>
+                    <div><img class="smallimage" src="assets/images/weight.svg"><%= pizza.small_size.weight %>
                     </div>
-                    <div><img class="smallimage" src="../www/assets/images/size-icon.svg"><%= pizza.small_size.size %>
+                    <div><img class="smallimage" src="assets/images/size-icon.svg"><%= pizza.small_size.size %>
                     </div>
-                    <p>
+                    <h2>
                         <%= pizza.small_size.price %>
-                    </p>
-                    <p>
+                    </h2>
+                    <h5>
                         грн
-                    </p>
+                    </h5>
                     <button type="button" class="btn btn-default enter buy-small">Купити</button>
                 </div>
                 <% } %>
                 <% if(pizza.big_size) { %>
                 <div class="small <%= column_class %>">
-                    <div><img class="smallimage" src="../www/assets/images/weight.svg"><%= pizza.big_size.weight %>
+                    <div><img class="smallimage" src="assets/images/weight.svg"><%= pizza.big_size.weight %>
                     </div>
-                    <div><img class="smallimage" src="../www/assets/images/size-icon.svg"><%= pizza.big_size.size %>
+                    <div><img class="smallimage" src="assets/images/size-icon.svg"><%= pizza.big_size.size %>
                     </div>
                     <h2>
                         <%= pizza.big_size.price %>
