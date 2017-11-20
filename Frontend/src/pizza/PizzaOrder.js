@@ -95,6 +95,8 @@ function checkOut(data, signature){
     }).on("liqpay.callback",	function(data){
         if(data.status==="sandbox")
             alert("Successfully sent");
+        else
+            alert("Failed to send");
     }).on("liqpay.ready",	function(data){
 
     }).on("liqpay.close",	function(data){
