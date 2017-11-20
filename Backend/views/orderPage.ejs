@@ -52,15 +52,21 @@
             <div class=" bs-callout bs-callout-warning">
                 <h4>Інформація про замовлення</h4>
                 <p class="order-summery-time">
-                    <b>Приблизний час доставки:</b> невідомий
+                    <b>Приблизний час доставки:</b><span class="delivery_time"> невідомий</span>
                 </p>
                 <p class="order-summery-adress">
-                    <b>Адреса доставки:</b> невідома
+                    <b>Адреса доставки:</b> <span class="delivery_address"> невідома</span>
                 </p>
             </div>
         </div>
     </div>
     <button class="btn" id="btn-submit">Далі</button>
+    <div id="map">
+
+    </div>
+    <div id="liqpay">
+
+    </div>
     <div class="right-panel">
         <div class="top">
             <span>Замовлено</span><span class="amount">3</span>
@@ -97,4 +103,10 @@
 <!--Own JavaScript -->
 <script type="text/javascript" src="assets/js/main.js"></script>
 
+<script	type="text/javascript"
+           src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBzG54PtviwEyclC4-AHhsM5e2tisig0J4">
+</script>
+<script	src="//static.liqpay.com/libjs/checkout.js">
+
+</script>
 </body>
